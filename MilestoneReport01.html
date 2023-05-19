@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
 
 <head>
@@ -335,14 +334,12 @@ Report</h1>
 Capstone Project</strong> in which we aim to implement an algorithm to
 predict the next word, given raw text data that needs to be cleaned and
 analysed.</p>
-<p>The course was developed by <strong>Johns Hopkins University</strong>
-in collaboration with <strong>Swiftkey</strong>.</p>
-<p>The topic of our report is <strong>NLP (Natural Language
-Processing)</strong>.</p>
+<p>The project was developed by <strong>Johns Hopkins
+University</strong> in collaboration with <strong>Swiftkey</strong>.</p>
 <hr />
 </div>
-<div id="our-data" class="section level3">
-<h3>Our Data</h3>
+<div id="the-data-description" class="section level3">
+<h3>The Data Description</h3>
 <div id="obtaining-the-data" class="section level4">
 <h4>Obtaining the Data</h4>
 <p>We obtained the data from the following URL:</p>
@@ -365,10 +362,33 @@ begin with the processing of their content.</p>
 </div>
 <div id="data-sampling-and-cleaning" class="section level4">
 <h4>Data Sampling and Cleaning</h4>
-<p>To make it easier for computation, we have to reduce the size of the
-data to an acceptable value, in this case we took a random binomial
-sample of 15% of each dataset to work with, clean, analyze and
-visualize.</p>
+<p>Due to system memory challenges, we reduced the sample size of the
+data as a random binomial sample of 15% of for each dataset to work
+with, clean, analyze and visualize.</p>
+<p>The unified document corpus will be compiled from the following three
+sources<br />
+of text data:</p>
+<ul>
+<li>Twitter<br />
+</li>
+<li>News<br />
+</li>
+<li>Blogs</li>
+</ul>
+</div>
+</div>
+<div id="summarization-of-the-data-from-the-three-text-files" class="section level2">
+<h2>Summarization of the data from the three text files:</h2>
+<p>In preparation to construct the unified document corpus and clean the
+data, a basic<br />
+summary of the three text files has been constructed. This summary
+includes file<br />
+sizes, number of lines, number of characters, and number of words for
+each<br />
+source file. Some basic statistics on the number of words per line<br />
+has been summarized.</p>
+<p>As the table shows, we have splitted the data on sub-sets as
+intended.</p>
 <p>Outlined below are the pre-processing steps we walked through:</p>
 <center>
 <div class="figure">
@@ -384,8 +404,6 @@ done because stemming using the <code>tm</code> package caused word
 content to be ruined and require a further process called
 <code>stemCompletion</code>.</p>
 <hr />
-</div>
-</div>
 <div id="n-grams" class="section level3">
 <h3>N-Grams</h3>
 <p>We used <code>NGramTokenizer</code> from the <code>RWeka</code>
@@ -411,20 +429,19 @@ package to find the most frequent <strong>unigrams</strong>,
 <div id="considerations" class="section level4">
 <h4>Considerations</h4>
 <ul>
-<li>The N-Grams frequency model produced is of our random sample of 15%
-of the dataset. If we performed another random sample, the most frequent
-words might change.<br />
+<li>The N-Grams frequency model produced is a random sample of 15% of
+the dataset. The results have a margin of error based on sampling.<br />
 </li>
 <li>If there is a way to create an N-Gram model of the entire dataset
-without sampling and without affecting app performance, this would be
-our best solution for high accuracy. Cannot be confirmed until further
-testing.<br />
+without sampling and without affecting app performance, this would
+produce higher accuracy (reduce the margin of error).<br />
 </li>
 <li>We can use a classification algorithm to detect the N-Grams, and
 then predict accordingly.<br />
 </li>
-<li>Further research on probabilistic models is important before a
-decision is made on which algorithm to implement.</li>
+<li>Further research on the alternative probabilistic models is
+important before a decision is made on which algorithm to
+implement.</li>
 </ul>
 </div>
 <div id="algorithm" class="section level4">
@@ -472,7 +489,7 @@ above section have been tested, timed and implemented.</p></li>
 <p class="caption">Step 5</p>
 </div>
 </center>
-<p>The concept is simple enough:</p>
+<p>The concept:</p>
 <ul>
 <li>A text field that takes a string input, and observes an event where
 (space) is entered after a word.<br />
@@ -488,15 +505,35 @@ developer. An attractive app is an app that more people will use.<br />
 </li>
 <li>Deploy the application on <a href="http://www.shinyapps.io/">shinyapps.io</a>.</li>
 </ul>
+</div>
+</div>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion:</h2>
+<p>The JHU Data Science Capstone project will conclude with a predictive
+algorithm that will be interfaced using a Shiny application. The Shiny
+application will provide the user interface. Structurally, the Shiny app
+will take as input a phrase or sequence of words in a text box input and
+generate as output a prediction of the next word.</p>
+<p>The predictive algorithm will be developed using an n-gram model with
+a word frequency look up. This is same approach utilized in the
+exploratory data analysis. The algorithm strategy will be based on the
+results realized and gathered during the exploratory analysis. Such
+that, as n increased for each n-gram, the frequency decreased for each
+of its terms. A possible algorithm strategy may be to construct the
+model to first look for the unigram that would follow from the entered
+text. Once a full term is input and followed by a space, the algorithm
+would identify the most common bigram model and so on.</p>
+<p>Another possible strategy may be to predict the next word using the
+trigram model. If no matching trigram can be found, then the algorithm
+would check the bigram model. If still not found, use the unigram
+model.</p>
 <hr />
-</div>
-</div>
 <div id="source-code" class="section level3">
 <h3>Source Code</h3>
 <p>For access to my GitHub Repository associated with this project,
-please visit the URL below:<br />
-<a href="https://github.com/Spyguy3/Data_Science_Capstone.git">Data
-Science Capstone</a></p>
+please visit the URL below: at <a href="https://github.com/Spyguy3/Data_Science_Capstone.git" class="uri">https://github.com/Spyguy3/Data_Science_Capstone.git</a></p>
+</div>
 </div>
 
 

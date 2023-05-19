@@ -29,13 +29,12 @@ library(stringi)
 ### Project Overview
 This is the milestone report for the **Coursera Data Science Capstone Project** in which we aim to implement an algorithm to predict the next word, given raw text data that needs to be cleaned and analysed.  
   
-The course was developed by **Johns Hopkins University** in collaboration with **Swiftkey**.  
+The project was developed by **Johns Hopkins University** in collaboration with **Swiftkey**.  
   
-The topic of our report is **NLP (Natural Language Processing)**.
 
 ----------------------------------------------------------------------------------------
 
-### Our Data
+### The Data Description
 
 #### Obtaining the Data  
 We obtained the data from the following URL:  
@@ -54,7 +53,24 @@ We are required to load three large text files into the `R Workspace`, explore t
 
 #### Data Sampling and Cleaning
 
-To make it easier for computation, we have to reduce the size of the data to an acceptable value, in this case we took a random binomial sample of 15% of each dataset to work with, clean, analyze and visualize.  
+Due to system memory challenges, we reduced the sample size of the data as a random binomial sample of 15% of for each dataset to work with, clean, analyze and visualize.  
+
+The unified document corpus will be compiled from the following three sources  
+of text data:  
+
+- Twitter  
+- News  
+- Blogs  
+
+##  Summarization of the data from the three text files:  
+
+In preparation to construct the unified document corpus and clean the data, a basic  
+summary of the three text files has been constructed. This summary includes file  
+sizes, number of lines, number of characters, and number of words for each  
+source file. Some basic statistics on the number of words per line   
+has been summarized.
+
+As the table shows, we have splitted the data on sub-sets as intended.
 
 Outlined below are the pre-processing steps we walked through:
 
@@ -77,10 +93,10 @@ We used `NGramTokenizer` from the `RWeka` package to find the most frequent **un
 ### Further Plans
 
 #### Considerations
-* The N-Grams frequency model produced is of our random sample of 15% of the dataset. If we performed another random sample, the most frequent words might change.  
-* If there is a way to create an N-Gram model of the entire dataset without sampling and without affecting app performance, this would be our best solution for high accuracy. Cannot be confirmed until further testing.  
+* The N-Grams frequency model produced is a random sample of 15% of the dataset. The results have a margin of error based on sampling.  
+* If there is a way to create an N-Gram model of the entire dataset without sampling and without affecting app performance, this would produce higher accuracy (reduce the margin of error).   
 * We can use a classification algorithm to detect the N-Grams, and then predict accordingly.  
-* Further research on probabilistic models is important before a decision is made on which algorithm to implement.  
+* Further research on the alternative probabilistic models is important before a decision is made on which algorithm to implement.  
 
 #### Algorithm
 
@@ -90,7 +106,7 @@ __Machine Learning__
 
 * Decision Tree logically must be the fastest algorithm to use if we are to grab the most frequent words of (N + 1) Grams. That essentially means that if a person enters a single word (N = 1), then the most probable next word is a Bigram (1 + 1). Subsequently if a person enters 2 words or 3 words, then we know the next word must come from Trigrams or Fourgrams respectively.  
 
-* SVMs are very efficient, accurate but slower than decision trees when implemented.  
+* SVMs are very efficient, accurate but slower than decision trees when implemented.
 
 * randomForest is a great choice for accuracy, but we must select an optimal number of trees to balance accuracy and computational efficiency.  
 
@@ -108,7 +124,7 @@ __Deep Learning__
   
 <center>![Step 5](step5.png)</center>
 
-The concept is simple enough:
+The concept:
 
 * A text field that takes a string input, and observes an event where (space) is entered after a word.  
 * The observed event triggers the prediction algorithm, cancels immediately if the person continues typing.  
@@ -116,7 +132,15 @@ The concept is simple enough:
 * A bit of UI work can be beneficial for both the user and the developer. An attractive app is an app that more people will use.  
 * Deploy the application on [shinyapps.io](http://www.shinyapps.io/).
 
+## Conclusion:  
+
+The JHU Data Science Capstone project will conclude with a predictive algorithm that will be  interfaced using a Shiny application.  The Shiny application will provide the user interface. Structurally, the Shiny app will take as input a phrase or sequence of words in a text box input and generate as output a prediction of the next word.  
+  
+The predictive algorithm will be developed using an n-gram model with a word frequency look up. This is same approach utilized in the exploratory data analysis. The algorithm strategy will be based on the results realized and gathered during the exploratory analysis. Such that, as n increased for each n-gram, the frequency decreased for each of its terms. A possible algorithm strategy may be to construct the model to first look for the unigram that would follow from the entered text. Once a full term is input and followed by a space, the algorithm would identify the most common bigram model and so on.   
+  
+Another possible strategy may be to predict the next word using the trigram model. If no matching trigram can be found, then the algorithm would check the bigram model. If still not found, use the unigram model.  
+
+
 ----------------------------------------------------------------------------------------
 ### Source Code
-For access to my GitHub Repository associated with this project, please visit the URL below:  
-[Data Science Capstone](https://github.com/Spyguy3/Data_Science_Capstone.git) 
+For access to my GitHub Repository associated with this project, please visit the URL below: at https://github.com/Spyguy3/Data_Science_Capstone.git 
