@@ -1,0 +1,13 @@
+name: JHU_Capstone_Word_Predictor
+title: JHU_Capstone_Word_Predictor
+username:
+account: wclisse
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9151585
+bundleId: 7242592
+url: https://wclisse.shinyapps.io/JHU_Capstone_Word_Predictor/
+when: 1684613053.14502
+lastSyncTime: 1684613053.14503
+asMultiple: FALSE
+asStatic: FALSE
