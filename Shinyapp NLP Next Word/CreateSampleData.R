@@ -1,6 +1,6 @@
 
 # This R script will create a sample data file from reading twitter, logs and news input
-# files. It will sample these files and create final combined file and will save it 
+# files from the Swiftkey data. It will sample these files and create final combined file and will save it 
 # in Data_Sample.txt
 
 
