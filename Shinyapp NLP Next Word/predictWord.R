@@ -1,5 +1,5 @@
 
-# This R script create an ngram model to predcit next word.
+# This script creates an ngram model to predcit next word
 
 
 Packages <- c("dplyr")
@@ -11,7 +11,6 @@ set.seed(1111)
 
 load("ngrams.Rdata")
 
-############################################################################
 #Caclulate and add term frequcncies column for each ngram
 ngram1_df <- ngram1_df %>%
   mutate(term_freq = count/sum(count))
@@ -24,8 +23,6 @@ ngram3_df <- ngram3_df %>%
 
 ngram4_df <- ngram4_df %>%
   mutate(term_freq = count/sum(count))
-
-#############################################################################
 
 
 inputSentence <- "last work"
