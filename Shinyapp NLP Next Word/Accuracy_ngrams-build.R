@@ -9,8 +9,6 @@ lapply(Packages, library, character.only = TRUE)
 rm(Packages)
 sample_fraction = .1
 
-
-#######################################################################################
 #Read Data for accuracy check
 fileConn<-file("Data_Sample_Accuracy.txt", "r")
 Accuracy_Data <- readLines(fileConn, skipNul = TRUE)
@@ -52,8 +50,6 @@ print(text_corpus)
 print(clean_text_corpus)
 rm(text_corpus)
 
-
-############################################################################
 #Create n-grams tokens
 
 tokenizer_ngram1 <- function(x) {
@@ -87,7 +83,6 @@ ngram4_tdm <- TermDocumentMatrix(clean_text_corpus,
                                  control = list(tokenize = tokenizer_ngram4))
 
 
-############################################################################
 #Use slam package to calculate the frequencies of each term by using rowsum function) and #Convert into datatable
 #slam::row_sums() function creates named vector of all terms and their frequencies
 # We then convert these named vector to a dataframe
@@ -112,7 +107,6 @@ ngram4_freq <- slam::row_sums(ngram4_tdm, na.rm = T)
 ngram4_freq <- sort(ngram4_freq, decreasing=TRUE)
 ngram4_df <- data.table(token = names(ngram4_freq), count = unname(ngram4_freq))
 
-############################################################################
 # Split tokens into individual words
 
 ngram1_df <- ngram1_df %>%
@@ -127,8 +121,6 @@ ngram3_df <- ngram3_df %>%
 ngram4_df <- ngram4_df %>%
   separate(token, c("FirstWord", "SecondWord", "ThirdWord", "FourthWord"), " ")
 
-
-############################################################################
 # Caclulate and add term frequcncies column for each ngram and also create 
 # a combined word from individual tokens
 
@@ -164,10 +156,7 @@ rm(clean_text_corpus, txt_vector,
 
 save.image("Accuracy_ngrams.Rdata")
 
-#######################################################################################
-#######################################################################################
-#######################################################################################
-#######################################################################################
+
 
 
 
