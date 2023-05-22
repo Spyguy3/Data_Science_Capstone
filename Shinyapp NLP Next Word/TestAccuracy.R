@@ -1,8 +1,5 @@
-#######################################################################################
+
 # This R script will Find the accuracy of predictWord algorithym
-#######################################################################################
-
-
 
 
 Packages <- c("qdap", "tm" ,"wordcloud", "ggplot2", "ggthemes", "RWeka", "data.table", "dplyr", "tidyr")
