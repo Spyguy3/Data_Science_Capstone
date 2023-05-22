@@ -1,7 +1,6 @@
 
-
-# This R script will create and Save 1,2,3,4 token grams. It reads the Data_Sample.txt 
-# file and creates 1,2,3 and 4 ngrams in dataframe with terms and their frequencies
+# This R script will create and Save token grams. It reads the Data_Sample.txt 
+# file and creates 1,2, and ngrams in dataframe with terms and their frequencies
 # The output file is saved in ngrams.Rdata file.
 
 
@@ -11,8 +10,6 @@ rm(Packages)
 # Set The Seed
 set.seed(1111)
 
-
-################################################################################
 #create n-gram tokens
 # Make tokenizer function for 2-gram
 
@@ -22,7 +19,6 @@ txt_vector <- readLines(con)
 close(con) ## It's important to close the connection when you are done
 rm(con)
 
-############################################################################
 #Create and Cleanup volatile Corpse
 text_source <- VectorSource(txt_vector)
 text_corpus <- VCorpus(text_source)
@@ -44,8 +40,6 @@ print(text_corpus)
 print(clean_text_corpus)
 rm(text_corpus)
 
-
-############################################################################
 #Create n-grams tokens
 
 tokenizer_ngram1 <- function(x) {
@@ -79,7 +73,6 @@ ngram4_tdm <- TermDocumentMatrix(clean_text_corpus,
                                  control = list(tokenize = tokenizer_ngram4))
 
 
-############################################################################
 #Use slam package to calculate the frequencies of each term by using rowsum function) and #Convert into datatable
 ngram1_freq <- slam::row_sums(ngram1_tdm, na.rm = T)
 ngram1_freq <- sort(ngram1_freq, decreasing=TRUE)
@@ -102,7 +95,6 @@ ngram4_freq <- slam::row_sums(ngram4_tdm, na.rm = T)
 ngram4_freq <- sort(ngram4_freq, decreasing=TRUE)
 ngram4_df <- data.table(token = names(ngram4_freq), count = unname(ngram4_freq))
 
-############################################################################
 # Split tokens into individual words
 
 ngram1_df <- ngram1_df %>%
@@ -116,8 +108,6 @@ ngram3_df <- ngram3_df %>%
 
 ngram4_df <- ngram4_df %>%
   separate(token, c("FirstWord", "SecondWord", "ThirdWord", "FourthWord"), " ")
-
-
 
 
 rm(clean_text_corpus, txt_vector,
