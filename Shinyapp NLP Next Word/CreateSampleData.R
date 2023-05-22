@@ -11,17 +11,12 @@ rm(Packages)
 set.seed(1111)
 
 
-
-# ###################################################################################
 #Create Sample Files, We will use these sample files for our project instaed of all data
 # fileSize("en_US.blogs.txt", units = "MB")
 # con_tmp <- file("en_US.blogs.txt", "r")
 # length(readLines(con_tmp))
 # max(nchar(readLines(con_tmp)))
 # 
-# 
-# 
-# ##################################
 #Twitter Sample file creation
 con <- file("en_US.twitter.txt", "r")
 data_All <- readLines(con, skipNul = TRUE)
@@ -32,7 +27,6 @@ close(fileConn)
 close(con)
 rm(fileConn, con, data_sample,data_All )
 #
-# ################################
 # #News Sample file creation
 con <- file("en_US.news.txt", "r")
 data_All <- readLines(con, skipNul = TRUE)
@@ -43,7 +37,6 @@ close(fileConn)
 close(con)
 rm(fileConn, con, data_sample,data_All )
 #
-# #################################
 # #Blogs Sample file creation
 con <- file("en_US.blogs.txt", "r")
 data_All <- readLines(con, skipNul = TRUE)
@@ -54,7 +47,7 @@ close(fileConn)
 close(con)
 rm(fileConn, con, data_sample,data_All )
 # #
-# # ###############################
+
 # # #Create combined sample file
 con_twitter <- file("Twitter_Sample.txt", "r")
 con_news <- file("News_Sample.txt", "r")
@@ -70,5 +63,4 @@ close(con_news)
 close(con_blogs)
 rm(twitter_vector, news_vector, blogs_vector, data_sample)
 rm(con_blogs, con_news, con_twitter, fileConn)
-# 
-# ###################################################################################
+
