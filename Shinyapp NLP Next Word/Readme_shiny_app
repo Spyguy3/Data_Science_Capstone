@@ -8,7 +8,7 @@
 
 Following files and scripts are created as part of buidling the next word application application.
 
-Load Packages
+##Load Packages
 
 Packages <- c("qdap", "tm" ,"wordcloud", "ggplot2", "RWeka", "tidytext")
 lapply(Packages, library, character.only = TRUE)
@@ -21,10 +21,10 @@ Input Data Files:
 - en_US.news.txt (Text File containing misc news items)
 - en_US.twitter.txt (Text File containing misc twitter tweets)
 - englishBadWords.txt (Text file containing inappropriate words to be filtered out from the dataset)
-Input Data Size
+
+##Input Data Size
 
 Twitter Dataset Length:
-
 
 #Twitter Sample file creation
 con <- file("en_US.twitter.txt", "r")
@@ -64,20 +64,30 @@ For explortory analysis, I used the same sample data that I used for building th
 
 As we can see from the word cloud and from bar chart that most frequently used words in the dataset were "Just" and "Said".
 
-How The Language Model will be Build
+##How The Language Model was Built
+
 I used an n-gram Language Model to predict the next word. The algorithym was used to improve speed and minimize complexity. I used only one ngram model at a time to predict the next word; starting with the heigest n-gram model and moving to lower-ngram models if no match is found in the heighest n-gram model.
 
 I created a sample data set of smaller size using the orginally provided three data files. This smaller sample data set will be used for my model training.
 
 Following steps describes the model:
 
-Load original datafiles and create a smaller sampled dataset to be used for modeling (look CreateSampleData.R for details)
-Do data exploratory analysis to look at most common words and any other data features (look at DataPrepAndExplore.R (This R script calculates top-words-frequncy, wordcloud, a hierarchical model of terms, calculate association between terms))
+Loaded original datafiles and create a smaller sampled dataset to be used for modeling (look CreateSampleData.R for details)
+
+Completed data exploratory analysis to look at most common words and any other data features (look at DataPrepAndExplore.R (This R script calculates top-words-frequncy, wordcloud, a hierarchical model of terms, calculate association between terms))
+
 Take text data sample file created in the previos steps and creates 1,2,3 and 4-grams tokens of all the words in the text file.
-Create Corpse: Corpse is a collection of documents. Created corpse using the sample data
-Clean Corpse: Clean up corpse with punctuations, numbers, profanity and converted all words to lower case.
-Create n-grams TDM tokens: Created 1,2,3 and 4-gram tokens TDM (Term Document Matrix) using cleaned up corpse.
-Calculate Frequecncies: Next we calculated frequencies of each token and sorted them by higest frequency first. As sorting will help us predict the term with the higest frequncy.
+
+Created Corpus: Corpse is a collection of documents. Created corpse using the sample data
+
+Cleaned Corpus: Clean up corpse with punctuations, numbers, profanity and converted all words to lower case.
+
+Created n-grams TDM tokens: Created 1,2,3 and 4-gram tokens TDM (Term Document Matrix) using cleaned up corpse.
+
+Calculated Frequecncies: Next we calculated frequencies of each token and sorted them by higest frequency first. As sorting will help us predict the term with the higest frequncy.
+
 Next we splitted tokens into individual words for that we can use 1st, 2nd and 3rd words in an N-Gram to match with input sentences. Look at ngrams-build.R file for details.
-Create a function to predict nxt word using the n-grams created in the previous steps. I created a function called predictWord to implement Stupid Backoff n-gram algorithm to predict the next word by using 4,3,2 and 1-gram models in that order. This function takes an input sentence and extracts n-1 words from that sentance. It starts with the heighest n-gram model and try to do a match. If no match is found then it looks for n-2 ngram model for a match. If no match is found in any of the n-gram model then the algorithym shows the heighest frequency word from 1-gram model.
-Chreated a Shiny app which allows to input a sentence and shows predicted outcome. This shiny app loads the ngrams and the predictWord function created in the previous steps usning an Rdata file. Shinyapp server.R used the predictWord function within a reactive function to predict next word based on the input sentence provided by the ui.R. ---
+
+Created a function to predict nxt word using the n-grams created in the previous steps. I created a function called predictWord to implement Stupid Backoff n-gram algorithm to predict the next word by using 4,3,2 and 1-gram models in that order. This function takes an input sentence and extracts n-1 words from that sentance. It starts with the heighest n-gram model and try to do a match. If no match is found then it looks for n-2 ngram model for a match. If no match is found in any of the n-gram model then the algorithym shows the heighest frequency word from 1-gram model.
+
+Created a Shiny app which allows to input a sentence and shows predicted outcome. This shiny app loads the ngrams and the predictWord function created in the previous steps usning an Rdata file. Shinyapp server.R used the predictWord function within a reactive function to predict next word based on the input sentence provided by the ui.R. ---
