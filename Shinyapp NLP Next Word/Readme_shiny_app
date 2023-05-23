@@ -45,7 +45,7 @@ close(con)
 rm(con, data_sample,data_All )
 Blogs Dataset Length:
 
-# #################################
+
 # #Blogs Sample file creation
 con <- file("en_US.blogs.txt", "r")
 data_All <- readLines(con, skipNul = TRUE)
