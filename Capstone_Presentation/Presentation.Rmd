@@ -1,7 +1,7 @@
 ---
 title: "Text Prediction Shiny Application"
 subtitle: "Bill Lisse"
-date: "May 20, 2023"
+date: "May 23, 2023"
 autosize: true
 output: ioslides_presentation
 
@@ -36,23 +36,22 @@ options(width=80)
 This presentation features the Next Word Predict Shiny Application including an introduction to the application user interface and details about the text prediction
 algorithm. The application will generate up to three different suggested words or phrases to complete any given character input in the text entry box.The benefit of this application is to speed writing and expected work(s) selection for techinal writers and bloggers.
 
-The Next Word Predict app is located at:
+The Next Word Predict Application is located at:
 <ul>
-    <li><a target="_blank" href="https://wclisse.shinyapps.io/NLP_Next_Word/">https://wclisse.shinyapps.io/NLP_Next_Word/</a></li>
+    <li><a target="_blank" href="https://wclisse.shinyapps.io/a3a9f7c425004cc7a6c36cd21f86d974/">Next Word Predict Shiny Application</a></li>
 </ul>
 
-The source code files can be found on GitHub:
+The Code is available at:
 <ul>
-    <li><a target="_blank" href="https://github.com/Spyguy3/Data_Science_Capstone.git">https://github.com/Spyguy3/Data_Science_Capstone.git//</a></li>
+    <li><a target="_blank" href="https://github.com/Spyguy3/Data_Science_Capstone.git">Github Repository</a></li>
 </ul>
-
 
 
 ## Shiny Application
 
-Word Predict is a Shiny application that uses a text
+The Next Word Prediction is a Shiny application that uses a text
 prediction algorithm to predict the next word(s) based on
-a text string entered by a user.
+a text string entered by a user (nGram).
 
 The application will suggest the next word in a string of text
 using an n-gram algorithm. An n-gram is a contiguous sequence
@@ -73,12 +72,14 @@ Data was obtained from:
 The predictive text model was built from a sample of a large corpus of blogs,
 news and twitter data from Swiftkey. 
 
-The sample data was then tokenized and cleaned using the **tm** package and a number
-of regular expressions using the **gsub** function. As part of the cleaning process the data was converted to lowercase, removed all non-ascii characters, URLs,
-email addresses, Twitter handles, hash tags, ordinal numbers,
-profane words, punctuation and whitespace. 
+I used an n-gram Language Model to predict the next word. As part of the cleaning process the data was converted to lowercase letters and all non-ascii characters, like URLs, email addresses, Twitter handles, hash tags, ordinal numbers,
+profane words, punctuation and whitespace, were removed. The data was split into tokens (n-grams). 
 
-The data was then split into tokens (n-grams). Tasks accomplished were: (1) Tokenization - Writing a function that takes a file as input and returns a tokenized version of it.; (2) Profanity filtering - removing profanity and other bad words.
+Tasks accomplished were:
+
+(1) Tokenization - Writing a function that takes a file as input and returns a tokenized version of it. 
+
+(2) Profanity filtering - removing profanity and other bad words.
 
 
 ## Application User Interface
@@ -87,13 +88,11 @@ The data was then split into tokens (n-grams). Tasks accomplished were: (1) Toke
 As text is entered by the user, the algorithm iterates
 from longest n-gram (4-gram) to shortest (2-gram) to
 detect a match. The predicted next word is considered using
-the longest, most frequent matching n-gram. The algorithm
-makes use of a simple back-off strategy.
+the longest, most frequent matching n-gram. 
 
 The predicted next word will be shown when the app
 detects that you have finished typing one or more words.
 When entering text, please allow a few seconds for the
-output to appear. Use the slider tool to select up to
-three next word predictions. The top prediction will be
+output to appear. The top prediction will be
 shown first followed by the second and third likely
 next words.
