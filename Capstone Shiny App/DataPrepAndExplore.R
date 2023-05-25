@@ -1,8 +1,9 @@
-#######################################################################################
+# Coursera Data Science Capstone
+# Bill Lisse
+# 20 May 2023
+
 # This R script will read Data_Sample file and will perfrom various text mining related 
 # exploratory analysis. such as wordcloud, term frequcncies plot, association analysis.
-#######################################################################################
-
 
 
 
@@ -13,8 +14,6 @@ rm(Packages)
 set.seed(1111)
 
 
-
-############################################################################
 #Read Sample Files
 con <- file("Data_Sample.txt")
 #readLines(con, 1) ## Read the first line of text 
@@ -24,19 +23,13 @@ con <- file("Data_Sample.txt")
 txt_vector <- readLines(con)
 close(con) ## It's important to close the connection when you are done
 rm(con)
-###################################################################################
 
 
-############################################################################
 #Look at the top 10 Terms used in the text
 term_count <- freq_terms(txt_vector, 5)
 plot(term_count)
 rm(term_count)
-############################################################################
 
-
-
-############################################################################
 #Create and Cleanup volatile Corpse
 text_source <- VectorSource(txt_vector)
 text_corpus <- VCorpus(text_source)
@@ -58,17 +51,14 @@ print(text_corpus)
 print(clean_text_corpus)
 rm(text_corpus)
 
-###########################################################################
 # Create the dtm from the corpus: coffee_dtm
 # text_dtm <- DocumentTermMatrix(clean_text_corpus)
 # print(text_dtm)
 # text_dtm_m <- as.matrix(text_dtm) # Convert dtm to a matrix
 # dim(text_dtm_m)                   # Print the dimensions of matrix
 # text_dtm_m[1:2, 1:10]             # Review a portion of the matrix
-############################################################################
 
 
-############################################################################
 #Create Wordcloud Visulizations to explore data
 # Create the tdm from the corpus: text_tdm
 text_tdm <- TermDocumentMatrix(clean_text_corpus)
@@ -83,19 +73,6 @@ text_tdm_m_term_frequency[1:10]    # Plot a barchart of the 10 most common words
 barplot(text_tdm_m_term_frequency[1:10], col = "tan", las = 2)
 
 
-###########################################################################
-#Create Wordcloud
-text_tdm_m_terms_vec <- names(text_tdm_m_term_frequency) # Create Vector of terms
-
-# Create a wordcloud for the values in word_freqs
-wordcloud(text_tdm_m_terms_vec, text_tdm_m_term_frequency, max.words = 100, colors = "red")
-
-rm(text_tdm_m_term_frequency, text_tdm_m_terms_vec)
-###########################################################################
-
-
-
-###########################################################################
 # Create Hirerechal Cluster of words in the TDM, HC helps you visulize which terms have
 # similiar frequencies to each other.
 dim(text_tdm)
@@ -118,8 +95,6 @@ hc <- hclust(data_dist)
 plot(hc)
 rm(data_dist, text_tdm_hc, text_tdm_hc_m, hc)
 
-
-####################################################################################
 # Find associations between two words to see For any given word, the function
 # findAssocs() calculates its correlation with every other word in a TDM or DTM. 
 # Scores range from 0 to 1. A score of 1 means that two words always appear together 
@@ -141,8 +116,6 @@ ggplot(associations_df, aes(score, word)) +
 
 rm(associations, associations_df)
 
-
-################################################################################
 #create n-gram tokens
 # Make tokenizer function for 2-gram
 bigramtokenizer <- function(x) {
@@ -177,7 +150,6 @@ text_tdm_trigram_m <- as.matrix(text_tdm_trigram)
 rm(text_tdm_unigram, text_tdm_bigram, text_tdm_trigram)
 rm(bigramtokenizer, trigramtokenizer)
 
-##########################################################################################
 #Look at top 10 term frequncies for Uni, Bi and Tri grams
 
 # Calculate the rowSums: term_frequency for unigram tdm
@@ -200,5 +172,5 @@ text_tdm_trigram_m_frequency[1:10]    # Plot a barchart of the 10 most common wo
 barplot(text_tdm_trigram_m_frequency[1:10], col = "tan", las = 2)
 
 rm(text_tdm_unigram_m_frequency, text_tdm_bigram_m_frequency, text_tdm_trigram_m_frequency)
-##########################################################################################
+
 
