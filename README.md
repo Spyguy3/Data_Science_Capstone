@@ -1,6 +1,10 @@
 # Data_Science_Capstone
 
-JHU Data Science Specialization Coursera
+# Coursera Data Science Capstone
+# Bill Lisse
+# 20 May 2023
+
+JHU Data Science Specialization Coursera - Capstone Course
 
 1. Project 1 - Milestone Report is located at: https://rpubs.com/wclisse/Capstone_Milestone
 
