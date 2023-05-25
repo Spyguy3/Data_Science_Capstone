@@ -1,10 +1,10 @@
-#######################################################################################
+# Coursera Data Science Capstone
+# Bill Lisse
+# 20 May 2023
+
 # This R script will create a sample data file from reading twitter, logs and news input
 # files. It will sample these files and create final combined file and will save it 
 # in Data_Sample.txt
-#######################################################################################
-
-
 
 
 Packages <- c("qdap", "tm" ,"wordcloud", "ggplot2", "ggthemes", "RWeka")
@@ -14,8 +14,6 @@ rm(Packages)
 set.seed(1111)
 
 
-
-# ###################################################################################
 #Create Sample Files, We will use these sample files for our project instaed of all data
 # fileSize("en_US.blogs.txt", units = "MB")
 # con_tmp <- file("en_US.blogs.txt", "r")
@@ -23,8 +21,6 @@ set.seed(1111)
 # max(nchar(readLines(con_tmp)))
 # 
 # 
-# 
-# ##################################
 #Twitter Sample file creation
 con <- file("en_US.twitter.txt", "r")
 data_All <- readLines(con, skipNul = TRUE)
@@ -35,7 +31,7 @@ close(fileConn)
 close(con)
 rm(fileConn, con, data_sample,data_All )
 #
-# ################################
+
 # #News Sample file creation
 con <- file("en_US.news.txt", "r")
 data_All <- readLines(con, skipNul = TRUE)
@@ -46,8 +42,9 @@ close(fileConn)
 close(con)
 rm(fileConn, con, data_sample,data_All )
 #
-# #################################
+
 # #Blogs Sample file creation
+
 con <- file("en_US.blogs.txt", "r")
 data_All <- readLines(con, skipNul = TRUE)
 data_sample <- sample(data_All, length(data_All) * 0.001)
@@ -56,9 +53,9 @@ writeLines(data_sample, fileConn)
 close(fileConn)
 close(con)
 rm(fileConn, con, data_sample,data_All )
-# #
-# # ###############################
+
 # # #Create combined sample file
+
 con_twitter <- file("Twitter_Sample.txt", "r")
 con_news <- file("News_Sample.txt", "r")
 con_blogs <- file("Blogs_Sample.txt", "r")
